@@ -1,0 +1,5 @@
+# Robots file 
+
+User-agent: *
+Crawl-delay: 120
+Disallow: /level2/
