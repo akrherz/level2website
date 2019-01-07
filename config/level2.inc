@@ -1,4 +1,3 @@
-<VirtualHost *:80>
   ServerName mesonet-nexrad.agron.iastate.edu
   ServerAlias level2.local
   ServerAdmin akrherz@iastate.edu
@@ -17,5 +16,3 @@
     Order allow,deny
     Allow from all
   </Directory>
-  
-</VirtualHost>
