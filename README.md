@@ -1,7 +1,7 @@
 level2website
 =============
 
-Stuff related to the level II nexrad data website
+Stuff related to the [level II nexrad data](https://mesonet-nexrad.agron.iastate.edu) website
 
 cd ldm
 ln -s pqact-craft.conf pqact-craft2.conf
