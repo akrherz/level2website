@@ -1,5 +1,4 @@
 """Download KULM data."""
-import json
 import os
 import subprocess
 
@@ -10,9 +9,7 @@ LOCAL = "/mnt/level2/raw/KULM/"
 
 def main():
     """Go Main Go."""
-    secrets = json.load(open('kulm_secrets.json'))
-    auth = (secrets['username'], secrets['password'])
-    req = requests.get(BASE + "dir.list", auth=auth, timeout=10)
+    req = requests.get(BASE + "dir.list", timeout=10)
     files = []
     for line in req.text.split("\n"):
         tokens = line.split()
@@ -21,7 +18,7 @@ def main():
         fn = tokens[1].strip()
         if os.path.isfile(LOCAL + fn):
             continue
-        req2 = requests.get(BASE + fn, auth=auth, timeout=20)
+        req2 = requests.get(BASE + fn, timeout=20)
         files.append(fn)
         fp = open(LOCAL + fn, 'wb')
         fp.write(req2.content)
