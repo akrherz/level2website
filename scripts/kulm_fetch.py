@@ -3,6 +3,7 @@ import os
 import subprocess
 
 import requests
+
 BASE = "http://wxdata.geos.ulm.edu/radar/KULM/"
 LOCAL = "/mnt/level2/raw/KULM/"
 
@@ -20,7 +21,7 @@ def main():
             continue
         req2 = requests.get(BASE + fn, timeout=20)
         files.append(fn)
-        fp = open(LOCAL + fn, 'wb')
+        fp = open(LOCAL + fn, "wb")
         fp.write(req2.content)
         fp.close()
 
@@ -28,8 +29,9 @@ def main():
     subprocess.call("/local/ldm/pyWWA/util/gr.csh KULM", shell=True)
     for fn in files:
         subprocess.call(
-            "/local/ldm/bin/pqinsert -i -f NEXRAD2 %s" % (fn, ), shell=True)
+            "/local/ldm/bin/pqinsert -i -f NEXRAD2 %s" % (fn,), shell=True
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
