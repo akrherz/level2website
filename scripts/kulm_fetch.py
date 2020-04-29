@@ -26,11 +26,9 @@ def main():
         fp.close()
 
     os.chdir(LOCAL)
-    subprocess.call("/local/ldm/pyWWA/util/gr.csh KULM", shell=True)
+    subprocess.call("pyWWA/util/gr.csh KULM", shell=True)
     for fn in files:
-        subprocess.call(
-            "/local/ldm/bin/pqinsert -i -f NEXRAD2 %s" % (fn,), shell=True
-        )
+        subprocess.call("pqinsert -i -f NEXRAD2 %s" % (fn,), shell=True)
 
 
 if __name__ == "__main__":
