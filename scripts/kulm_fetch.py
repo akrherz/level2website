@@ -21,12 +21,11 @@ def main():
             continue
         req2 = requests.get(BASE + fn, timeout=20)
         files.append(fn)
-        fp = open(LOCAL + fn, "wb")
-        fp.write(req2.content)
-        fp.close()
+        with open(LOCAL + fn, "wb") as fh:
+            fh.write(req2.content)
 
     os.chdir(LOCAL)
-    subprocess.call("pyWWA/util/gr.csh KULM", shell=True)
+    subprocess.call("/home/meteor_ldm/pyWWA/util/gr.csh KULM", shell=True)
     for fn in files:
         subprocess.call("pqinsert -i -f NEXRAD2 %s" % (fn,), shell=True)
 
