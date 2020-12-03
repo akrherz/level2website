@@ -1,5 +1,7 @@
 """Download KULM data."""
 import os
+import sys
+import socket
 import subprocess
 
 import requests
@@ -8,9 +10,20 @@ BASE = "http://wxdata.geos.ulm.edu/radar/KULM/"
 LOCAL = "/mnt/level2/raw/KULM/"
 
 
+def make_request(url):
+    """Safer."""
+    try:
+        return requests.get(url, timeout=20)
+    except socket.timeout:
+        print(f"socket.timeout for {url}")
+    except Exception as exp:
+        print(f"exception {exp} for {url}")
+    sys.exit()
+
+
 def main():
     """Go Main Go."""
-    req = requests.get(BASE + "dir.list", timeout=10)
+    req = make_request(BASE + "dir.list")
     files = []
     for line in req.text.split("\n"):
         tokens = line.split()
@@ -19,7 +32,7 @@ def main():
         fn = tokens[1].strip()
         if os.path.isfile(LOCAL + fn):
             continue
-        req2 = requests.get(BASE + fn, timeout=20)
+        req2 = make_request(BASE + fn)
         files.append(fn)
         with open(LOCAL + fn, "wb") as fh:
             fh.write(req2.content)
