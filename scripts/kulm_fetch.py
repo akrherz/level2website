@@ -37,6 +37,8 @@ def main():
         with open(LOCAL + fn, "wb") as fh:
             fh.write(req2.content)
 
+    if not files:
+        return
     os.chdir(LOCAL)
     subprocess.call("/home/meteor_ldm/pyWWA/util/gr.csh KULM", shell=True)
     for fn in files:
