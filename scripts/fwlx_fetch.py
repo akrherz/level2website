@@ -1,8 +1,8 @@
 """Download FWLX data @DualDoppler."""
 import os
-import sys
 import socket
 import subprocess
+import sys
 
 import requests
 

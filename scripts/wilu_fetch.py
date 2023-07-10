@@ -1,8 +1,8 @@
 """Download WILU data."""
 import os
-import sys
 import socket
 import subprocess
+import sys
 
 import requests
 
