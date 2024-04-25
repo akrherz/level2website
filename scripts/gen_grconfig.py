@@ -1,4 +1,5 @@
 """Look at our dirs and update the GRconfig."""
+
 import glob
 import os
 from io import StringIO
