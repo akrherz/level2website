@@ -19,7 +19,6 @@ def make_request(url):
         print(f"socket.timeout for {url}")
     except Exception:
         pass
-        # print(f"exception {exp} for {url}")
     sys.exit()
 
 
