@@ -14,11 +14,11 @@ LOCAL = "/mnt/level2/raw/FWLX/"
 def make_request(url):
     """Safer."""
     try:
-        return requests.get(url, timeout=20)
+        return requests.get(url, timeout=10)
     except socket.timeout:
         print(f"socket.timeout for {url}")
-    except Exception as exp:
-        print(f"exception {exp} for {url}")
+    except Exception:
+        pass
     sys.exit()
 
 
@@ -31,11 +31,12 @@ def main():
         if len(tokens) != 2 or not tokens[1].startswith("2008"):
             continue
         fn = tokens[1].strip()
-        if os.path.isfile(LOCAL + fn):
+        lfn = fn.replace("2008_20", "FWLX_20")
+        if os.path.isfile(LOCAL + lfn):
             continue
         req2 = make_request(BASE + fn)
-        files.append(fn)
-        with open(LOCAL + fn, "wb") as fh:
+        files.append(lfn)
+        with open(LOCAL + lfn, "wb") as fh:
             fh.write(req2.content)
 
     if not files:
