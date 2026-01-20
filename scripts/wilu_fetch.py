@@ -1,7 +1,6 @@
 """Download WILU data."""
 
 import os
-import socket
 import subprocess
 import sys
 
@@ -15,7 +14,7 @@ def make_request(url):
     """Safer."""
     try:
         return requests.get(url, timeout=10)
-    except socket.timeout:
+    except TimeoutError:
         print(f"socket.timeout for {url}")
     except Exception:
         try:
