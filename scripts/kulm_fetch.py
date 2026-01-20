@@ -1,7 +1,6 @@
 """Download KULM data."""
 
 import os
-import socket
 import subprocess
 import sys
 
@@ -15,7 +14,7 @@ def make_request(url):
     """Safer."""
     try:
         return requests.get(url, timeout=20)
-    except socket.timeout:
+    except TimeoutError:
         print(f"socket.timeout for {url}")
     except Exception as exp:
         print(f"exception {exp} for {url}")
@@ -43,7 +42,7 @@ def main():
     os.chdir(LOCAL)
     subprocess.call("/home/meteor_ldm/pyWWA/util/gr.csh KULM", shell=True)
     for fn in files:
-        subprocess.call("pqinsert -i -f NEXRAD2 %s" % (fn,), shell=True)
+        subprocess.call(["pqinsert", "-i", "-f", "NEXRAD2", fn])
 
 
 if __name__ == "__main__":
