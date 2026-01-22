@@ -16,3 +16,11 @@
     Order allow,deny
     Allow from all
   </Directory>
+
+  Alias "/archive" "/mnt/l2archive"
+  <Directory "/mnt/l2archive">
+    Options Indexes
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
