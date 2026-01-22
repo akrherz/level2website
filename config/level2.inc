@@ -21,6 +21,5 @@
   <Directory "/mnt/l2archive">
     Options Indexes FollowSymLinks
     AllowOverride None
-    Order allow,deny
-    Allow from all
+    Require all granted
   </Directory>
