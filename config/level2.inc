@@ -11,7 +11,7 @@
 
   Alias "/level2" "/mnt/level2"
   <Directory "/mnt/level2">
-    Options Indexes
+    Options Indexes FollowSymLinks
     AllowOverride None
     Order allow,deny
     Allow from all
@@ -19,7 +19,7 @@
 
   Alias "/archive" "/mnt/l2archive"
   <Directory "/mnt/l2archive">
-    Options Indexes
+    Options Indexes FollowSymLinks
     AllowOverride None
     Order allow,deny
     Allow from all
