@@ -42,7 +42,7 @@ def main():
             destfn = destdir / fn.name
             if destfn.exists():
                 continue
-            shutil.copyfile(fn, destfn)
+            shutil.move(fn, destfn)
         if not found:
             LOG.info("No files found for radar %s", radar)
 
