@@ -5,7 +5,7 @@ import subprocess
 import sys
 
 import click
-import httpx
+import requests
 
 CONFIG = {
     "FWLX": "http://12.180.92.9/Output/FWLX",
@@ -19,10 +19,10 @@ RADARID = {
 LOCAL = "/mnt/level2/raw/"
 
 
-def make_request(url):
+def make_request(url: str):
     """Safer."""
     try:
-        resp = httpx.get(url, timeout=10)
+        resp = requests.get(url, timeout=10)
         resp.raise_for_status()
         return resp
     except Exception:
@@ -54,7 +54,12 @@ def main(radar: str):
     if not files:
         return
     os.chdir(LOCAL + radar)
-    subprocess.call(["/home/meteor_ldm/pyWWA/util/gr.csh", radar])
+    # We don't care what happens with this command
+    subprocess.call(
+        ["/home/meteor_ldm/pyWWA/util/gr.csh", radar],
+        stderr=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,
+    )
     for fn in files:
         subprocess.call(["pqinsert", "-i", "-f", "NEXRAD2", fn])
 
