@@ -9,6 +9,12 @@
     Allow from all
   </Directory>
 
+  #Redirect /level2/raw/KJAX https://tgftp.nws.noaa.gov/data/radar/nexrad_level2/KJAX
+  RewriteEngine On
+  RewriteCond %{HTTP_USER_AGENT} ^GRLevelX/2\.0$
+  #RewriteRule ^/level2/raw/(.*)$ https://tgftp.nws.noaa.gov/data/radar/nexrad_level2/$1 [R=302,L]
+  RewriteRule ^/level2/raw/(.*)$ https://nomads.ncep.noaa.gov/pub/data/nccf/radar/nexrad_level2/$1 [R=302,L]
+
   Alias "/level2" "/mnt/level2"
   <Directory "/mnt/level2">
     Options Indexes FollowSymLinks
