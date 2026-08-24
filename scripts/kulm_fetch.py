@@ -40,7 +40,7 @@ def main():
     if not files:
         return
     os.chdir(LOCAL)
-    subprocess.call("/home/meteor_ldm/pyWWA/util/gr.csh KULM", shell=True)
+    subprocess.call(["bash", "/home/meteor_ldm/pyWWA/util/gr.sh", "KULM"])
     for fn in files:
         subprocess.call(["pqinsert", "-i", "-f", "NEXRAD2", fn])
 

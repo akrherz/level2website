@@ -56,7 +56,7 @@ def main(radar: str):
     os.chdir(LOCAL + radar)
     # We don't care what happens with this command
     subprocess.call(
-        ["/home/meteor_ldm/pyWWA/util/gr.csh", radar],
+        ["bash", "/home/meteor_ldm/pyWWA/util/gr.sh", radar],
         stderr=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
     )
